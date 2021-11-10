@@ -13,7 +13,7 @@ public class Menu {
 
     static void logInMenu() {
         // Get inside a loop and user hits 0
-        String a = "Log In Menu. Enter a number to enter next screen(Q to Quit): ";
+        String a = "Log In Menu. Enter a number to enter next screen(Q to Quit): \n";
         Scanner in = new Scanner(System.in);
         System.out.println(a);
         System.out.println("1.Select to Filter Vehicles");
@@ -58,16 +58,39 @@ public class Menu {
 //    }
     static void filterMenu() {
         System.out.println("Welcome to the Filter Menu! How would you like to filter vehicles? ");
+        System.out.println("1.Display All");
+        System.out.println("2.Filter Attributes");
+        System.out.println("Press 0 to return to the Main Menu.");
+        Scanner in = new Scanner(System.in);
+        int filterSelection = in.nextInt();
+        try{
+            switch(filterSelection) {
+                case 0: logInMenu();
+                case 1: // display all vehicles
+                case 2: attributes(); // go into new method with attributes
+            }
+        }
+        catch(InputMismatchException ex){
+            System.out.println("***Invalid Input***\n");
+            in.nextLine();
+        }
 
+    }
+    static void attributes(){
+        //method to further filter vehicles
     }
 
     static void sellMenu() {
         System.out.println("Welcome to the Sell Menu!");
+        System.out.println("Enter \"1\" for Listings");
     }
 
     static void vinMenu() {
         System.out.println("Welcome to the Vin Input Screen! Please input VIN Number of Vehicle: ");
-
+        Scanner in = new Scanner(System.in);
+        int vin = in.nextInt();
+        //conditional statement to compare if VIN is valid within the db,
+        //else return error message, maybe a try catch block
     }
 
     static void userMenu() {
