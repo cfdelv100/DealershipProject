@@ -1,13 +1,25 @@
+package util;
 //import util.Inventory;
-
+import util.User;
 import java.util.*;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends User{
+    public Menu(String username, boolean admin) {
+        super(username, admin);
+    }
+
     //try catch methods and does not terminate when writing the menu
     public static void main(String[] args) {
         Scanner a = new Scanner(System.in);
         logInMenu();
+
+        if(!User.isAdmin()){
+            logInMenu();
+        }
+        else{
+            AdminMenu();
+        }
 
     }
 
@@ -54,8 +66,58 @@ public class Menu {
             }
         }
     }
+        //Administration Menu
+        static void AdminMenu(){
+            // Get inside a loop and user hits 0
+            String a = "Admin Menu. Enter a number to enter next screen(Q to Quit): \n";
+            Scanner in = new Scanner(System.in);
+            System.out.println(a);
+            System.out.println("1.Select to Filter Vehicles");
+            System.out.println("2.Select to Sell Vehicle");
+            System.out.println("3.Select to Enter VIN Number");
+            System.out.println("4.Select to Enter User Credentials");
+            System.out.println("5.Activate/Deactivate Users");
+            System.out.println("6.Display Users");
+            while (true) {
 
-    //    static void mainMenu(){
+                String selection = in.nextLine();
+                if (!selection.equals("Q")) {
+
+                    try {
+                        switch (selection) {
+                            case "1":
+                                filterMenu();
+                                break;
+                            case "2":
+                                sellMenu();
+                                break;
+                            case "3":
+                                vinMenu();
+                                break;
+                            case "4":
+                                userMenu();
+                                break;
+                            case "5":
+                                userMenu();
+                                break;
+                            case "6":
+                                displayMenu();
+                                break;
+                            default:
+                                System.out.println("***Invalid Input***\n");
+                                break;
+
+                        }
+
+                    } catch (InputMismatchException ex) {
+                        System.out.print("***Invalid input***\n");
+                        in.nextLine();
+                    }
+                } else {
+                    System.exit(0);
+                }
+            }
+        }
 //
 //
 //    }
@@ -101,7 +163,14 @@ public class Menu {
 
     static void userMenu() {
         System.out.println("User Menu");
+        //Methods to activate and deactivate
 
     }
+    static void displayMenu() {
+        System.out.println("Display Users");
+        //Methods to display users
+
+    }
+
 
 }
