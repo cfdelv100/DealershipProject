@@ -39,6 +39,9 @@ public class Menu {
                         case "4":
                             userMenu();
                             break;
+                        default:
+                            System.out.println("***Invalid Input***\n");
+                            break;
 
                     }
 
@@ -68,6 +71,9 @@ public class Menu {
                 case 0: logInMenu();
                 case 1: // display all vehicles
                 case 2: attributes(); // go into new method with attributes
+                default:
+                    System.out.println("***Invalid Input***\n");
+                    in.nextLine();
             }
         }
         catch(InputMismatchException ex){
