@@ -1,5 +1,5 @@
 package util;
-//import util.Inventory;
+import util.Inventory;
 import util.User;
 import java.util.*;
 import java.util.Scanner;
@@ -63,6 +63,9 @@ public class Menu extends User{
                             break;
                         case "4":
                             userMenu();
+                            break;
+                        case "9":
+                            adminLogIn();
                             break;
                         default:
                             System.out.println("***Invalid Input***\n");
@@ -155,11 +158,24 @@ public class Menu extends User{
     }
     static void attributes(){
         //method to further filter vehicles
+
     }
 
     static void sellMenu() {
         System.out.println("Welcome to the Sell Menu!");
         System.out.println("Enter \"1\" for Listings");
+        Scanner input = new Scanner(System.in);
+        int i = input.nextInt();
+        Inventory inventory =  Inventory.getInventory();
+        if(input.nextInt() == 1){
+            for (Vehicle s: inventory.getAllVehicles())
+            System.out.print(s);
+        }
+        System.out.println("Enter \"2\" to Add Vehicle");
+        input.nextInt();
+//        if(input.nextInt() == 2){
+//            User user = inventory.addCar();
+//        }
     }
 
     static void vinMenu() {
@@ -173,11 +189,30 @@ public class Menu extends User{
     static void userMenu() {
         System.out.println("User Menu");
         //Methods to activate and deactivate
-
+        Inventory inv = Inventory.getInventory();
+        inv.addUser("user","password",false);
+        inv.deactivateUser("user");
+        for (String s: inv.listUser()) {
+            System.out.println(s);
+        }
     }
     static void displayMenu() {
         System.out.println("Display Users");
         //Methods to display users
+        Inventory inv = Inventory.getInventory();
+        for (String s: inv.listUser()) {
+            System.out.println(s);
+        }
+
+    }
+    static void adminLogIn(){
+        System.out.print("Admin Log in");
+        Scanner admin = new Scanner(System.in);
+        String login = admin.nextLine();
+        //TODO: Implement database for login for admin
+        Inventory inv = Inventory.getInventory();
+        User user = inv.checkUser("root","admin");
+
 
     }
 
