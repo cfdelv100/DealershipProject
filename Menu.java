@@ -11,27 +11,40 @@ public class Menu extends User{
 
     //try catch methods and does not terminate when writing the menu
     public static void main(String[] args) {
-        Scanner a = new Scanner(System.in);
-        logInMenu();
+        Scanner first = new Scanner(System.in);
+        System.out.println("Input 1 for Admin or 0 for User.");
+        int match = first.nextInt();
+        try {
+           switch (match){
+               case 0: logInMenu();
+               break;
+               case 1: AdminMenu();
+               break;
+               default:
+                   System.out.println("***Invalid Input***\n");
+                   break;
+           }
+        }
+        catch(InputMismatchException ex){
+            System.out.println("****Invalid Input****");
+        }
+//        Scanner a = new Scanner(System.in);
+//        logInMenu();
 
-        if(!User.isAdmin()){
-            logInMenu();
-        }
-        else{
-            AdminMenu();
-        }
 
     }
 
     static void logInMenu() {
         // Get inside a loop and user hits 0
         String a = "Log In Menu. Enter a number to enter next screen(Q to Quit): \n";
+        String b = "If an Admin, please hit 9 for admin log in";
         Scanner in = new Scanner(System.in);
         System.out.println(a);
         System.out.println("1.Select to Filter Vehicles");
         System.out.println("2.Select to Sell Vehicle");
         System.out.println("3.Select to Enter VIN Number");
         System.out.println("4.Select to Enter User Credentials");
+        System.out.println(b);
         while (true) {
 
             String selection = in.nextLine();
@@ -75,9 +88,8 @@ public class Menu extends User{
             System.out.println("1.Select to Filter Vehicles");
             System.out.println("2.Select to Sell Vehicle");
             System.out.println("3.Select to Enter VIN Number");
-            System.out.println("4.Select to Enter User Credentials");
-            System.out.println("5.Activate/Deactivate Users");
-            System.out.println("6.Display Users");
+            System.out.println("4.Activate/Deactivate Users");
+            System.out.println("5.Display Users");
             while (true) {
 
                 String selection = in.nextLine();
@@ -98,9 +110,6 @@ public class Menu extends User{
                                 userMenu();
                                 break;
                             case "5":
-                                userMenu();
-                                break;
-                            case "6":
                                 displayMenu();
                                 break;
                             default:
